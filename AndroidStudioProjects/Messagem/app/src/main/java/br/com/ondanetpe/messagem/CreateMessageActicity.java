@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
+
 public class CreateMessageActicity extends AppCompatActivity {
 
 
@@ -18,14 +19,28 @@ public class CreateMessageActicity extends AppCompatActivity {
 
     public void onSendMessage(View view){
 
-        EditText mensagenEnviar = (EditText)findViewById(R.id.message);
-        String mens = mensagenEnviar.getText().toString();
+        /*pegar o valor de EditTexto(O que o usuario Digitou) e colocar em uma variavel do mesmo objeto que foi
+        *declarado no para obter o valor do cliente e fazer o Cast
+        */
+        EditText receberVariavelEditText = (EditText) findViewById(R.id.messageTesteUsuario);
 
-       Intent intent = new Intent(this, ReceiveMessageActivity.class);
-        intent.putExtra("message",mens);
+        //Add uma String para pegar o valor do usuario
+        String recebeValorDaMensagem = receberVariavelEditText.getText().toString();
+
+
+        //Intent intent = new Intent(this, ReceiveMessageActivity.class);
+        //intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, recebeValorDaMensagem);
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, recebeValorDaMensagem);
+
         startActivity(intent);
 
 
-
     }
+
+
+
+
 }
